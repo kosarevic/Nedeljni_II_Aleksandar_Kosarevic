@@ -54,7 +54,9 @@ namespace Zadatak_1.View
 
             if (txtUsername.Text == OwnerUsername && txtPassword.Password == OwnerPassword)
             {
-                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Successfull login.", "Notification");
+                AdminWindow window = new AdminWindow();
+                window.Show();
+                Close();
             }
             else
             {

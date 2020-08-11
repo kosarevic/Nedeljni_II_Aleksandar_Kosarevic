@@ -1,1 +1,1 @@
-﻿Username: Admin Password: Admin
+﻿Username: admin Password: admin

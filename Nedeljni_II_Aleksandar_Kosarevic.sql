@@ -7,6 +7,8 @@ USE Zadatak_1
 --All tables are reseted clean.
 if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblMedicalInstitute')
 drop table tblMedicalInstitute
+if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblClinicAdministrator')
+drop table tblClinicAdministrator
 
 create table tblMedicalInstitute
 (
@@ -22,3 +24,18 @@ BackYard bit,
 AmbulanceAccess int,
 DisabledAccess int
 )
+
+create table tblClinicAdministrator
+(
+AdministratorID int primary key IDENTITY(1,1),
+FirstName varchar(50),
+LastName varchar(50),
+RegistrationNumber varchar(50),
+Gender char,
+DateOfBirth date,
+Citazenship varchar(50),
+Username varchar(50),
+Password varchar(200)
+)
+
+select * from tblClinicAdministrator
