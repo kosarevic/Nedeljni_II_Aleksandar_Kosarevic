@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Zadatak_1.Model;
 
 namespace Zadatak_1.View
 {
@@ -27,6 +28,8 @@ namespace Zadatak_1.View
         {
             InitializeComponent();
         }
+
+        public static ClinicAdministrator CurrentAdministrator = new ClinicAdministrator();
 
         private void BtnLogin(object sender, RoutedEventArgs e)
         {
@@ -54,14 +57,56 @@ namespace Zadatak_1.View
 
             if (txtUsername.Text == OwnerUsername && txtPassword.Password == OwnerPassword)
             {
+                AddAdminWindow window = new AddAdminWindow();
+                window.Show();
+                Close();
+                return;
+            }
+
+            CurrentAdministrator = null;
+
+            //Inserted value in password field is being converted into enrypted verson for latter matching with database version.
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(txtPassword.Password);
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            String hash = System.Text.Encoding.ASCII.GetString(data);
+
+            SqlConnection sqlCon = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString());
+            //User is extracted from the database matching inserted paramaters Username and Password.
+            SqlCommand query = new SqlCommand("SELECT * FROM tblClinicAdministrator WHERE Username=@Username AND Password=@Password", sqlCon);
+            query.CommandType = CommandType.Text;
+            query.Parameters.AddWithValue("@Username", txtUsername.Text);
+            query.Parameters.AddWithValue("@Password", hash);
+            sqlCon.Open();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query);
+            DataTable dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                CurrentAdministrator = new ClinicAdministrator
+                {
+                    Id = int.Parse(row[0].ToString()),
+                    FirstName = row[1].ToString(),
+                    LastName = row[2].ToString(),
+                    RegistrationNumber = row[3].ToString(),
+                    Gender = row[4].ToString(),
+                    DateOfBirth = DateTime.Parse(row[5].ToString()),
+                    Citazenship = row[6].ToString(),
+                    Username = row[7].ToString(),
+                    Password = row[8].ToString()
+                };
+            }
+
+            if (CurrentAdministrator != null)
+            {
                 AdminWindow window = new AdminWindow();
                 window.Show();
                 Close();
+                return;
             }
-            else
-            {
-                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Incorrect login credentials, please try again.", "Notification");
-            }
+
+            sqlCon.Close();
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Incorrect login credentials, please try again.", "Notification");
         }
 
         private void BtnRegister(object sender, RoutedEventArgs e)

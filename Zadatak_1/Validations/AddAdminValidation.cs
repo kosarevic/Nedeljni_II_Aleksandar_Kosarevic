@@ -11,7 +11,7 @@ using Zadatak_1.Model;
 
 namespace Zadatak_1.Validations
 {
-    static class AddAdministratorValidation
+    static class AddAdminValidation
     {
 
         public static bool Validate(ClinicAdministrator admin)

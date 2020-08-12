@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zadatak_1.Model
 {
-    class ClinicAdministrator : User
+    public class ClinicAdministrator : User
     {
 
         public ClinicAdministrator() : base()

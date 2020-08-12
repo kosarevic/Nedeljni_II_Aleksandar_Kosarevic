@@ -38,4 +38,19 @@ Username varchar(50),
 Password varchar(200)
 )
 
+create table tblClinicMaintance
+(
+MaintanceID int primary key IDENTITY(1,1),
+FirstName varchar(50),
+LastName varchar(50),
+RegistrationNumber varchar(50),
+Gender char,
+DateOfBirth date,
+Citazenship varchar(50),
+Username varchar(50),
+Password varchar(200),
+ClinicExpansion bit,
+DisabledAccess bit
+)
+
 select * from tblClinicAdministrator

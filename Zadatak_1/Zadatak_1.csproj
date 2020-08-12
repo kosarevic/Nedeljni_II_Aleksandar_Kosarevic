@@ -61,9 +61,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\ClinicAdministrator.cs" />
+    <Compile Include="Model\ClinicMaintance.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Validations\AddAdministratorValidation.cs" />
+    <Compile Include="Validations\AddAdminValidation.cs" />
     <Compile Include="ViewModel\AddAdministratorViewModel.cs" />
+    <Compile Include="ViewModel\AdminWindowViewModel.cs" />
+    <Compile Include="View\AddAdminWindow.xaml.cs">
+      <DependentUpon>AddAdminWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
@@ -99,6 +104,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="View\AddAdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
