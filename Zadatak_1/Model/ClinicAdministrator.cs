@@ -9,9 +9,10 @@ namespace Zadatak_1.Model
     public class ClinicAdministrator : User
     {
 
+        public bool FirstLogin { get; set; }
+
         public ClinicAdministrator() : base()
         {
-
         }
 
     }

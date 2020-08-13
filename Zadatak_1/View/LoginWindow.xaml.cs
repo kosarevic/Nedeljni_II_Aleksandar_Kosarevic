@@ -93,8 +93,27 @@ namespace Zadatak_1.View
                     DateOfBirth = DateTime.Parse(row[5].ToString()),
                     Citazenship = row[6].ToString(),
                     Username = row[7].ToString(),
-                    Password = row[8].ToString()
+                    Password = row[8].ToString(),
+                    FirstLogin = bool.Parse(row[9].ToString())
                 };
+            }
+
+            if (CurrentAdministrator != null && CurrentAdministrator.FirstLogin)
+            {
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+                {
+                    var cmd = new SqlCommand(@"update tblClinicAdministrator set FirstLogin=@FirstLogin where AdministratorID=@AdministratorID", conn);
+                    cmd.Parameters.AddWithValue("@AdministratorID", CurrentAdministrator.Id);
+                    cmd.Parameters.AddWithValue("@FirstLogin", false);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+
+                AddClinicWindow window = new AddClinicWindow();
+                window.Show();
+                Close();
+                return;
             }
 
             if (CurrentAdministrator != null)

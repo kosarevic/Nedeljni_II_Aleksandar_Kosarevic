@@ -1,0 +1,32 @@
+﻿<Window x:Class="Zadatak_1.View.AddClinicWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        xmlns:local="clr-namespace:Zadatak_1.View"
+        mc:Ignorable="d"
+        Title="AddClinicWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="100,58,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="136,57,0,0" TextWrapping="Wrap" Text="{Binding Clinic.Title, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="26,106,0,0" TextWrapping="Wrap" Text="Construction Date" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="370,63,0,0" TextWrapping="Wrap" Text="{Binding Clinic.Adress, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="87,148,0,0" TextWrapping="Wrap" Text="Owner" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="136,148,0,0" TextWrapping="Wrap" Text="{Binding Clinic.Owner, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="536,65,0,0" TextWrapping="Wrap" Text="Ambulance Spots" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="650,63,0,0" TextWrapping="Wrap" Text="{Binding Clinic.AmbulanceAccess, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="556,105,0,0" TextWrapping="Wrap" Text="Disabled Spots" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="650,103,0,0" TextWrapping="Wrap" Text="{Binding Clinic.DisabledAccess, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="313,66,0,0" TextWrapping="Wrap" Text="Adress" VerticalAlignment="Top"/>
+        <DatePicker x:Name="date" HorizontalAlignment="Left" Margin="136,105,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Clinic.ConstructionDate, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="316,110,0,0" TextWrapping="Wrap" Text="Floors" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="370,106,0,0" TextWrapping="Wrap" Text="{Binding Clinic.Floors, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <CheckBox x:Name="Balcony" Content="Balcony Access" HorizontalAlignment="Left" Margin="577,159,0,0" VerticalAlignment="Top" Checked="ClinicBalconyAccess"/>
+        <CheckBox x:Name="BackYard" Content="Back Yard Access" HorizontalAlignment="Left" Margin="577,191,0,0" VerticalAlignment="Top" Checked="ClinicBackYardAccess"/>
+        <Button Click="Btn_Confirm" Content="Confirm" HorizontalAlignment="Left" Margin="291,323,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="Btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="433,323,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Margin="316,152,0,0" TextWrapping="Wrap" Text="Rooms" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="370,148,0,0" TextWrapping="Wrap" Text="{Binding Clinic.Rooms, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</Window>

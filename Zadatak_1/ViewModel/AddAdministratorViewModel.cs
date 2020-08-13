@@ -52,7 +52,7 @@ namespace Zadatak_1.ViewModel
 
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
             {
-                var cmd = new SqlCommand(@"insert into tblClinicAdministrator values (@FirstName, @LastName, @RegistrationNumber, @Gender, @DateOfBirth, @Citazenship, @Username, @Password);", conn);
+                var cmd = new SqlCommand(@"insert into tblClinicAdministrator values (@FirstName, @LastName, @RegistrationNumber, @Gender, @DateOfBirth, @Citazenship, @Username, @Password, @FirstLogin);", conn);
                 cmd.Parameters.AddWithValue("@FirstName", administrator.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", administrator.LastName);
                 cmd.Parameters.AddWithValue("@RegistrationNumber", administrator.RegistrationNumber);
@@ -61,6 +61,7 @@ namespace Zadatak_1.ViewModel
                 cmd.Parameters.AddWithValue("@Citazenship", administrator.Citazenship);
                 cmd.Parameters.AddWithValue("@Username", administrator.Username);
                 cmd.Parameters.AddWithValue("@Password", hash);
+                cmd.Parameters.AddWithValue("@FirstLogin", true);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();

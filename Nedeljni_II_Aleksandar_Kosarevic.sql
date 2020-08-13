@@ -5,14 +5,16 @@ GO
 --Newly created database is set to be in use.
 USE Zadatak_1
 --All tables are reseted clean.
-if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblMedicalInstitute')
-drop table tblMedicalInstitute
+if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblClinic')
+drop table tblClinic
 if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblClinicAdministrator')
 drop table tblClinicAdministrator
+if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblClinicMaintance')
+drop table tblClinicMaintance
 
-create table tblMedicalInstitute
+create table tblClinic
 (
-InstituteID int primary key IDENTITY(1,1),
+ClinicID int primary key IDENTITY(1,1),
 Title varchar(50),
 ConstructionDate Date,
 Owner varchar(50),
@@ -35,7 +37,8 @@ Gender char,
 DateOfBirth date,
 Citazenship varchar(50),
 Username varchar(50),
-Password varchar(200)
+Password varchar(200),
+FirstLogin bit
 )
 
 create table tblClinicMaintance
@@ -53,4 +56,4 @@ ClinicExpansion bit,
 DisabledAccess bit
 )
 
-select * from tblClinicAdministrator
+select * from tblClinicMaintance

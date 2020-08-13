@@ -60,17 +60,29 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Clinic.cs" />
     <Compile Include="Model\ClinicAdministrator.cs" />
     <Compile Include="Model\ClinicMaintance.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Validations\AddClinicMaintanceValidation.cs" />
     <Compile Include="Validations\AddAdminValidation.cs" />
+    <Compile Include="Validations\EditClinicMaintanceValidation.cs" />
     <Compile Include="ViewModel\AddAdministratorViewModel.cs" />
-    <Compile Include="ViewModel\AdminWindowViewModel.cs" />
+    <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="View\AddAdminWindow.xaml.cs">
       <DependentUpon>AddAdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddClinicMaintanceWindow.xaml.cs">
+      <DependentUpon>AddClinicMaintanceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddClinicWindow.xaml.cs">
+      <DependentUpon>AddClinicWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditClinicMaintanceWindow.xaml.cs">
+      <DependentUpon>EditClinicMaintanceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -108,7 +120,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddClinicMaintanceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddClinicWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditClinicMaintanceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
