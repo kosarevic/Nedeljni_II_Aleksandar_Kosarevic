@@ -30,6 +30,7 @@ namespace Zadatak_1.View
         }
 
         public static ClinicAdministrator CurrentAdministrator = new ClinicAdministrator();
+        public static ClinicManager CurrentManager = new ClinicManager();
 
         private void BtnLogin(object sender, RoutedEventArgs e)
         {
@@ -64,6 +65,7 @@ namespace Zadatak_1.View
             }
 
             CurrentAdministrator = null;
+            CurrentManager = null;
 
             //Inserted value in password field is being converted into enrypted verson for latter matching with database version.
             byte[] data = System.Text.Encoding.ASCII.GetBytes(txtPassword.Password);
@@ -100,16 +102,6 @@ namespace Zadatak_1.View
 
             if (CurrentAdministrator != null && CurrentAdministrator.FirstLogin)
             {
-                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
-                {
-                    var cmd = new SqlCommand(@"update tblClinicAdministrator set FirstLogin=@FirstLogin where AdministratorID=@AdministratorID", conn);
-                    cmd.Parameters.AddWithValue("@AdministratorID", CurrentAdministrator.Id);
-                    cmd.Parameters.AddWithValue("@FirstLogin", false);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-
                 AddClinicWindow window = new AddClinicWindow();
                 window.Show();
                 Close();
@@ -119,6 +111,45 @@ namespace Zadatak_1.View
             if (CurrentAdministrator != null)
             {
                 AdminWindow window = new AdminWindow();
+                window.Show();
+                Close();
+                return;
+            }
+
+            sqlCon = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString());
+            //User is extracted from the database matching inserted paramaters Username and Password.
+            query = new SqlCommand("SELECT * FROM tblClinicManager WHERE Username=@Username AND Password=@Password", sqlCon);
+            query.CommandType = CommandType.Text;
+            query.Parameters.AddWithValue("@Username", txtUsername.Text);
+            query.Parameters.AddWithValue("@Password", hash);
+            sqlCon.Open();
+            sqlDataAdapter = new SqlDataAdapter(query);
+            dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                CurrentManager = new ClinicManager
+                {
+                    Id = int.Parse(row[0].ToString()),
+                    FirstName = row[1].ToString(),
+                    LastName = row[2].ToString(),
+                    RegistrationNumber = row[3].ToString(),
+                    Gender = row[4].ToString(),
+                    DateOfBirth = DateTime.Parse(row[5].ToString()),
+                    Citazenship = row[6].ToString(),
+                    Username = row[7].ToString(),
+                    Password = row[8].ToString(),
+                    Floor = int.Parse(row[9].ToString()),
+                    Doctors = int.Parse(row[10].ToString()),
+                    Rooms = int.Parse(row[11].ToString()),
+                    Oversight = int.Parse(row[12].ToString())
+                };
+            }
+
+            if(CurrentManager != null)
+            {
+                ClinicManagerWindow window = new ClinicManagerWindow();
                 window.Show();
                 Close();
                 return;

@@ -53,5 +53,12 @@ namespace Zadatak_1.View
             window.Show();
             Close();
         }
+
+        private void AddManager(object sender, RoutedEventArgs e)
+        {
+            AddClinicManager window = new AddClinicManager();
+            window.Show();
+            Close();
+        }
     }
 }

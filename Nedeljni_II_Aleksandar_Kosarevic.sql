@@ -11,6 +11,10 @@ if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblClinicAdministrator'
 drop table tblClinicAdministrator
 if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblClinicMaintance')
 drop table tblClinicMaintance
+if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblClinicDoctor')
+drop table tblClinicDoctor
+if exists (SELECT name FROM sys.sysobjects WHERE name = 'tblClinicManager')
+drop table tblClinicManager
 
 create table tblClinic
 (
@@ -56,4 +60,40 @@ ClinicExpansion bit,
 DisabledAccess bit
 )
 
-select * from tblClinicMaintance
+create table tblClinicManager
+(
+ManagerID int primary key IDENTITY(1,1),
+FirstName varchar(50),
+LastName varchar(50),
+RegistrationNumber varchar(50),
+Gender char,
+DateOfBirth date,
+Citazenship varchar(50),
+Username varchar(50),
+Password varchar(200),
+Floor int,
+Doctors int,
+Rooms int,
+Oversight int
+)
+
+create table tblClinicDoctor
+(
+DoctorID int primary key IDENTITY(1,1),
+FirstName varchar(50),
+LastName varchar(50),
+RegistrationNumber varchar(50),
+Gender char,
+DateOfBirth date,
+Citazenship varchar(50),
+Username varchar(50),
+Password varchar(200),
+UniqueNumber varchar(50),
+Account varchar(50),
+Unit varchar(50),
+Shift varchar(50),
+PatientAccess bit,
+ManagerID int foreign key references tblClinicManager(ManagerID) not null,
+)
+
+select * from tblClinicDoctor

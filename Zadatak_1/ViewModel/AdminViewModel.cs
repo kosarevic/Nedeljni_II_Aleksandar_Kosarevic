@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Zadatak_1.Model;
+using Zadatak_1.View;
 
 namespace Zadatak_1.ViewModel
 {
@@ -22,6 +23,7 @@ namespace Zadatak_1.ViewModel
             FillList();
             Maintance = new ClinicMaintance();
             Clinic = new Clinic();
+            ClinicManager = new ClinicManager();
         }
 
         private ClinicMaintance maintance;
@@ -50,6 +52,21 @@ namespace Zadatak_1.ViewModel
                 {
                     clinic = value;
                     OnPropertyChanged("Clinic");
+                }
+            }
+        }
+
+        private ClinicManager clinicManager;
+
+        public ClinicManager ClinicManager
+        {
+            get { return clinicManager; }
+            set
+            {
+                if (clinicManager != value)
+                {
+                    clinicManager = value;
+                    OnPropertyChanged("ClinicManager");
                 }
             }
         }
@@ -180,6 +197,44 @@ namespace Zadatak_1.ViewModel
                 cmd.ExecuteNonQuery();
                 conn.Close();
                 MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Clinic successfully created.", "Notification");
+            }
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+            {
+                var cmd = new SqlCommand(@"update tblClinicAdministrator set FirstLogin=@FirstLogin where AdministratorID=@AdministratorID", conn);
+                cmd.Parameters.AddWithValue("@AdministratorID", LoginWindow.CurrentAdministrator.Id);
+                cmd.Parameters.AddWithValue("@FirstLogin", false);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+
+        public void AddClinicManager()
+        {
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(clinicManager.Password);
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            String hash = System.Text.Encoding.ASCII.GetString(data);
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+            {
+                var cmd = new SqlCommand(@"insert into tblClinicManager values (@FirstName, @LastName, @RegistrationNumber, @Gender, @DateOfBirth, @Citazenship, @Username, @Password, @Floor, @Doctors, @Rooms, @Oversight);", conn);
+                cmd.Parameters.AddWithValue("@FirstName", clinicManager.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", clinicManager.LastName);
+                cmd.Parameters.AddWithValue("@RegistrationNumber", clinicManager.RegistrationNumber);
+                cmd.Parameters.AddWithValue("@Gender", clinicManager.Gender);
+                cmd.Parameters.AddWithValue("@DateOfBirth", clinicManager.DateOfBirth);
+                cmd.Parameters.AddWithValue("@Citazenship", clinicManager.Citazenship);
+                cmd.Parameters.AddWithValue("@Username", clinicManager.Username);
+                cmd.Parameters.AddWithValue("@Password", hash);
+                cmd.Parameters.AddWithValue("@Floor", clinicManager.Floor);
+                cmd.Parameters.AddWithValue("@Doctors", clinicManager.Doctors);
+                cmd.Parameters.AddWithValue("@Rooms", clinicManager.Rooms);
+                cmd.Parameters.AddWithValue("@Oversight", 0);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Clinic manager successfully created.", "Notification");
             }
         }
 
