@@ -29,6 +29,7 @@ namespace Zadatak_1.View
             InitializeComponent();
         }
 
+        public static Clinic CurrentClinic = new Clinic();
         public static ClinicAdministrator CurrentAdministrator = new ClinicAdministrator();
         public static ClinicManager CurrentManager = new ClinicManager();
 
@@ -58,10 +59,47 @@ namespace Zadatak_1.View
 
             if (txtUsername.Text == OwnerUsername && txtPassword.Password == OwnerPassword)
             {
-                AddAdminWindow window = new AddAdminWindow();
-                window.Show();
-                Close();
-                return;
+                SqlConnection sqlCon1 = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString());
+                //User is extracted from the database matching inserted paramaters Username and Password.
+                SqlCommand query1 = new SqlCommand("SELECT * FROM tblClinicAdministrator", sqlCon1);
+                query1.CommandType = CommandType.Text;
+                sqlCon1.Open();
+                SqlDataAdapter sqlDataAdapter1 = new SqlDataAdapter(query1);
+                DataTable dataTable1 = new DataTable();
+                sqlDataAdapter1.Fill(dataTable1);
+
+                ClinicAdministrator AdminExists = new ClinicAdministrator();
+                AdminExists = null;
+
+                foreach (DataRow row in dataTable1.Rows)
+                {
+                    AdminExists = new ClinicAdministrator
+                    {
+                        Id = int.Parse(row[0].ToString()),
+                        FirstName = row[1].ToString(),
+                        LastName = row[2].ToString(),
+                        RegistrationNumber = row[3].ToString(),
+                        Gender = row[4].ToString(),
+                        DateOfBirth = DateTime.Parse(row[5].ToString()),
+                        Citazenship = row[6].ToString(),
+                        Username = row[7].ToString(),
+                        Password = row[8].ToString(),
+                        FirstLogin = bool.Parse(row[9].ToString())
+                    };
+                }
+
+                if (AdminExists == null)
+                {
+                    AddAdminWindow window = new AddAdminWindow();
+                    window.Show();
+                    Close();
+                    return;
+                }
+                else
+                {
+                    MessageBoxResult messageBoxResult1 = System.Windows.MessageBox.Show("Administrator account alredy exists in database.", "Notification");
+                    return;
+                }
             }
 
             CurrentAdministrator = null;

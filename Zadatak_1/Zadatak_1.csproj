@@ -67,8 +67,11 @@
     <Compile Include="Model\ClinicManager.cs" />
     <Compile Include="Model\ClinicPatient.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Validations\AddClinicDoctorValidation.cs" />
     <Compile Include="Validations\AddClinicMaintanceValidation.cs" />
     <Compile Include="Validations\AddAdminValidation.cs" />
+    <Compile Include="Validations\AddClinicManagerValidation.cs" />
+    <Compile Include="Validations\AddClinicValidation.cs" />
     <Compile Include="Validations\EditClinicMaintanceValidation.cs" />
     <Compile Include="ViewModel\AddAdministratorViewModel.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />

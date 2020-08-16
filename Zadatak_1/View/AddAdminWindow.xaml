@@ -9,24 +9,25 @@
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="67,58,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="136,57,0,0" TextWrapping="Wrap" Text="{Binding Administrator.FirstName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="68,106,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="136,106,0,0" TextWrapping="Wrap" Text="{Binding Administrator.LastName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="14,148,0,0" TextWrapping="Wrap" Text="Registration number" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="136,148,0,0" TextWrapping="Wrap" Text="{Binding Administrator.RegistrationNumber, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="309,58,0,0" TextWrapping="Wrap" Text="Gender" VerticalAlignment="Top"/>
-        <ComboBox x:Name="CmbGender" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Left" Margin="362,57,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Genders}" SelectedItem="{Binding Administrator.Gender, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="540,62,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="602,57,0,0" TextWrapping="Wrap" Text="{Binding Administrator.Username, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="544,109,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="602,106,0,0" TextWrapping="Wrap" Text="{Binding Administrator.Password, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="281,109,0,0" TextWrapping="Wrap" Text="Date of birth" VerticalAlignment="Top"/>
-        <DatePicker x:Name="date" HorizontalAlignment="Left" Margin="362,106,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Administrator.DateOfBirth, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="287,151,0,0" TextWrapping="Wrap" Text="Citazenship" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="362,148,0,0" TextWrapping="Wrap" Text="{Binding Administrator.Citazenship, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="93,89,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="162,88,0,0" TextWrapping="Wrap" Text="{Binding Administrator.FirstName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="94,137,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="162,137,0,0" TextWrapping="Wrap" Text="{Binding Administrator.LastName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="40,179,0,0" TextWrapping="Wrap" Text="Registration number" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="162,179,0,0" TextWrapping="Wrap" Text="{Binding Administrator.RegistrationNumber, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="335,89,0,0" TextWrapping="Wrap" Text="Gender" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CmbGender" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Left" Margin="388,88,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Genders}" SelectedItem="{Binding Administrator.Gender, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="566,93,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="628,88,0,0" TextWrapping="Wrap" Text="{Binding Administrator.Username, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="570,140,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="628,137,0,0" TextWrapping="Wrap" Text="{Binding Administrator.Password, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="307,140,0,0" TextWrapping="Wrap" Text="Date of birth" VerticalAlignment="Top"/>
+        <DatePicker x:Name="date" HorizontalAlignment="Left" Margin="388,137,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Administrator.DateOfBirth, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="313,182,0,0" TextWrapping="Wrap" Text="Citazenship" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="388,179,0,0" TextWrapping="Wrap" Text="{Binding Administrator.Citazenship, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
         <Button Click="Btn_Confirm" Content="Confirm" HorizontalAlignment="Left" Margin="291,323,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Click="Btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="433,323,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label FontSize="25" Content="Add Administrator" HorizontalAlignment="Left" Margin="291,20,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

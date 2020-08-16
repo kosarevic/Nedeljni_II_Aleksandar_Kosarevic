@@ -49,6 +49,57 @@ namespace Zadatak_1.Validations
                     reader1.Close();
                     conn.Close();
                 }
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+                {
+                    var cmd = new SqlCommand(@"select RegistrationNumber from tblClinicMaintance where RegistrationNumber = @RegistrationNumber", conn);
+                    cmd.Parameters.AddWithValue("@RegistrationNumber", maintance.RegistrationNumber);
+                    conn.Open();
+                    SqlDataReader reader1 = cmd.ExecuteReader();
+                    while (reader1.Read())
+                    {
+                        if (reader1[0].ToString() == maintance.RegistrationNumber)
+                        {
+                            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Registration number already exists in database, try again.", "Notification");
+                            return false;
+                        }
+                    }
+                    reader1.Close();
+                    conn.Close();
+                }
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+                {
+                    var cmd = new SqlCommand(@"select RegistrationNumber from tblClinicManager where RegistrationNumber = @RegistrationNumber", conn);
+                    cmd.Parameters.AddWithValue("@RegistrationNumber", maintance.RegistrationNumber);
+                    conn.Open();
+                    SqlDataReader reader1 = cmd.ExecuteReader();
+                    while (reader1.Read())
+                    {
+                        if (reader1[0].ToString() == maintance.RegistrationNumber)
+                        {
+                            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Registration number already exists in database, try again.", "Notification");
+                            return false;
+                        }
+                    }
+                    reader1.Close();
+                    conn.Close();
+                }
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+                {
+                    var cmd = new SqlCommand(@"select RegistrationNumber from tblClinicDoctor where RegistrationNumber = @RegistrationNumber", conn);
+                    cmd.Parameters.AddWithValue("@RegistrationNumber", maintance.RegistrationNumber);
+                    conn.Open();
+                    SqlDataReader reader1 = cmd.ExecuteReader();
+                    while (reader1.Read())
+                    {
+                        if (reader1[0].ToString() == maintance.RegistrationNumber)
+                        {
+                            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Registration number already exists in database, try again.", "Notification");
+                            return false;
+                        }
+                    }
+                    reader1.Close();
+                    conn.Close();
+                }
             }
             if (maintance.Gender == "" || maintance.Gender == null)
             {
@@ -89,6 +140,57 @@ namespace Zadatak_1.Validations
                 using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
                 {
                     var cmd = new SqlCommand(@"select Username from tblClinicAdministrator where Username = @Username", conn);
+                    cmd.Parameters.AddWithValue("@Username", maintance.Username);
+                    conn.Open();
+                    SqlDataReader reader1 = cmd.ExecuteReader();
+                    while (reader1.Read())
+                    {
+                        if (reader1[0].ToString() == maintance.Username)
+                        {
+                            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Username already exists in database, try again.", "Notification");
+                            return false;
+                        }
+                    }
+                    reader1.Close();
+                    conn.Close();
+                }
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+                {
+                    var cmd = new SqlCommand(@"select Username from tblClinicMaintance where Username = @Username", conn);
+                    cmd.Parameters.AddWithValue("@Username", maintance.Username);
+                    conn.Open();
+                    SqlDataReader reader1 = cmd.ExecuteReader();
+                    while (reader1.Read())
+                    {
+                        if (reader1[0].ToString() == maintance.Username)
+                        {
+                            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Username already exists in database, try again.", "Notification");
+                            return false;
+                        }
+                    }
+                    reader1.Close();
+                    conn.Close();
+                }
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+                {
+                    var cmd = new SqlCommand(@"select Username from tblClinicManager where Username = @Username", conn);
+                    cmd.Parameters.AddWithValue("@Username", maintance.Username);
+                    conn.Open();
+                    SqlDataReader reader1 = cmd.ExecuteReader();
+                    while (reader1.Read())
+                    {
+                        if (reader1[0].ToString() == maintance.Username)
+                        {
+                            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Username already exists in database, try again.", "Notification");
+                            return false;
+                        }
+                    }
+                    reader1.Close();
+                    conn.Close();
+                }
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ToString()))
+                {
+                    var cmd = new SqlCommand(@"select Username from tblClinicDoctor where Username = @Username", conn);
                     cmd.Parameters.AddWithValue("@Username", maintance.Username);
                     conn.Open();
                     SqlDataReader reader1 = cmd.ExecuteReader();

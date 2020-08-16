@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Zadatak_1.Validations;
 using Zadatak_1.ViewModel;
 
 namespace Zadatak_1.View
@@ -39,10 +40,15 @@ namespace Zadatak_1.View
         private void Btn_Confirm(object sender, RoutedEventArgs e)
         {
             avm.ClinicManager.DateOfBirth = DateTime.Parse(date.ToString());
-            avm.AddClinicManager();
-            AdminWindow window = new AdminWindow();
-            window.Show();
-            Close();
+
+            if (AddClinicManagerValidation.Validate(avm.ClinicManager))
+            {
+                avm.AddClinicManager();
+                AdminWindow window = new AdminWindow();
+                window.Show();
+                Close();  
+            }
+
         }
 
         private void Btn_Cancel(object sender, RoutedEventArgs e)
